@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>React Workshop</title>
+    <style>
+      .counter-app {
+        width: 100%;
+        margin: 0 auto;
+      }
+      .counter-app button,
+      .counter-app div {
+        margin: 0 auto;
+        text-align: center;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+    <script type="text/babel">
+      class Counter extends React.Component {
+        state = { counter: 0 }
+
+        handleClick = () => {
+          this.setState({counter: this.state.counter + 1});
+        }
+
+        render() {
+          const { counter } = this.state;
+
+          return (
+            <div className="counter-app">
+              <div>{counter}</div>
+              <button onClick={this.handleClick}>Beer Counter!</button>
+            </div>
+          ); 
+        }
+      };
+
+      ReactDOM.render(
+        <Counter />,
+        document.getElementById('app')
+      );
+    </script>
+  </body>
+</html>

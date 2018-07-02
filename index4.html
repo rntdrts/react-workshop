@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>React Workshop</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+    <script type="text/babel">
+      const Message = (props) => <div> {props.msg} </div>;
+
+      ReactDOM.render(
+        <div>
+          {element({msg: 'Hello World!'})}
+          {element({msg: 'Let\'s drink some beers!!'})}
+        </div>,
+        document.getElementById('app')
+      );
+    </script>
+  </body>
+</html>
+

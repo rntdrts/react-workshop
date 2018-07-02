@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>React Workshop</title>
+    <style>
+      .counter-app {
+        width: 100%;
+        margin: 0 auto;
+      }
+      .counter-app button,
+      .counter-app div {
+        margin: 0 auto;
+        text-align: center;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="counter-app">
+      <div id="show-counter" class="counter">0</div>
+      <button id="counter-button">Beer Counter!</button>
+    </div>
+    <script type="text/javascript">
+      const increment = () => {
+        let index = 0;
+        return () => {
+          index++;
+          document.getElementById('show-counter').innerHTML = index;
+        }
+      }
+
+      document.getElementById('counter-button').addEventListener('click', increment());
+    </script>
+  </body>
+</html>
