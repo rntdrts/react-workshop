@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>React Workshop</title>
+    <style>
+      #app {
+        width: 100%;
+      }
+      .clock {
+        font-size: 60px;
+        margin: 0 auto;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+    <script type="text/babel">
+      const append = (val) => ('0' + val).slice(-2);
+      const state = { date: new Date() };
+      function setState(newState) {
+        Object.assign(state, newState);
+        renderApp();
+      };
+
+      function Clock() {
+        const { date } = state;
+        
+        return (
+          `<div class="clock">
+            ${append(date.getHours())}:${append(date.getMinutes())}:${append(date.getSeconds())}
+          </div>`
+        )  
+      }
+      
+      function renderApp() {
+        document.getElementById('app').innerHTML = Clock();
+      }
+
+      renderApp();
+
+      setInterval(() => setState({date: new Date()}), 1000);
+    </script>
+  </body>
+</html>

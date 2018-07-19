@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <title>React Workshop</title>
+    <style>
+      #app {
+        width: 100%;
+      }
+      .center {
+        font-size: 60px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      ul {
+        list-style-type: none;
+      }
+      li {
+        font-size: 18px;
+        text-align: left;
+        margin: 10px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+    <script type="text/babel">
+      const CommentList = ({ comments, ...props }) => {
+        return  (
+          <ul {...props}>
+            {comments.map((comment, i) => <li>{comment.body} - {comment.author}</li>)}
+          </ul>
+        );
+      }
+      
+      const comments = [
+        {body: 'Thanks por nada!', author: '@jaquim', nationality: 'pt'},
+        {body: 'Nô entendo portugues...', author: '@janos', nationality: 'hu'},
+        {body: 'I should shut this down!!', author: '@hugo', nationality: 'pt'},
+        {body: 'go hugo go!', author: '@raffa', nationality: 'it'},
+        {body: 'Common guys, there\'s reviews to be done...', author: '@bo', nationality: 'pt'},
+        {body: 'Let\'s "Vue" this!!', author: '@mario', nationality: 'pt'}
+      ];
+
+      const fetchComments = () => new Promise(
+        (resolve) => setTimeout(() => resolve(comments) ,1000)
+      );
+
+      class Post extends React.Component {
+        static defaultProps = { className: 'post-section' }
+        state = {comments: [{body: 'Fetching posts...', author: '@bot'}]}
+        
+        componentDidMount() {
+          fetchComments()
+            .then((result) => this.setState({comments: result}))
+        }
+
+        render() {
+          const { comments } = this.state;
+
+          return (
+            <div className="center">
+              <CommentList comments={comments} {...this.props} />
+            </div>
+          );
+        } 
+      }
+
+      ReactDOM.render(
+        <Post />,
+        document.getElementById('app')
+      );
+    </script>
+  </body>
+</html>
